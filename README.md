@@ -4,8 +4,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Modules & Libs
 
-Card view: `ngx-card` use `npm i ngx-card` (https://github.com/ihym/ngx-card)
-Material: 'angular material' use `ng add @angular/material` (https://material.angular.io/)
+### Card view: 
+`ngx-card` use `npm i ngx-card` (https://github.com/ihym/ngx-card)
+### Material: 
+`angular material` use `ng add @angular/material` (https://material.angular.io/)
 
 ## Development server
 

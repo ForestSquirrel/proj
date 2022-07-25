@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -28,12 +27,19 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
+import { MonitorPageComponent } from './monitor-page/monitor-page.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
 import {MatRippleModule} from '@angular/material/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { CardModule } from 'ngx-card/';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatDialogModule} from '@angular/material/dialog';
+import { RecDialogContentComponent } from './rec-dialog-content/rec-dialog-content.component';
+
+
 
 
 
@@ -46,7 +52,12 @@ const routes: Routes = [
   {
     path: '',
     component: MainPageComponent
+  },
+  {
+    path: 'Monitor',
+    component: MonitorPageComponent
   }
+
 
 ];
 
@@ -55,9 +66,14 @@ const routes: Routes = [
     AppComponent,
     MainPageComponent,
     MainDashboardComponent,
+    MonitorPageComponent,
+    RecDialogContentComponent,
   ],
   imports: [
     CardModule,
+    MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule,
     BrowserModule,
     MatTabsModule,
     HttpClientModule,

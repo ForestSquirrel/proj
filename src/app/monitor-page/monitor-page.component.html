@@ -1,0 +1,85 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-nav-list>
+      <div class="side-menu">
+        <button mat-list-item (click)="this.onClickHome()">
+          <span class="menu-text">
+            <mat-icon>home</mat-icon> Home
+          </span>
+        </button>
+        <button mat-list-item (click)="this.onClickMonitor()">
+          <span class="menu-text">
+            <mat-icon>bar_chart</mat-icon> Monitor
+          </span>
+        </button>
+        <button mat-list-item (click)="this.onClickTransaction()">
+          <span class="menu-text">
+            <mat-icon>compare_arrows</mat-icon> Transaction
+          </span>
+        </button>
+        <button mat-list-item>
+          <span class="menu-text">
+            <mat-icon>payment</mat-icon> Payment
+          </span>
+        </button>
+        <button mat-list-item>
+          <span class="menu-text">
+            <mat-icon>credit_card</mat-icon> My cards
+          </span>
+        </button>
+        <button mat-list-item>
+          <span class="menu-text">
+            <mat-icon>settings</mat-icon> Settings
+          </span>
+        </button>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color='accent'>
+      <mat-toolbar-row>
+        <button mat-icon-button class="example-icon" (click)="drawer.toggle()" disableRipple="true">
+          <img class="logo-icon" src="../../assets/logo.png">
+        </button>
+        <span class="example-spacer"></span>
+
+        <button mat-button [matMenuTriggerFor]="Menu">
+          Phone number/User name
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #Menu="matMenu" xPosition="before" yPosition="below">
+          <button mat-menu-item>action 1</button>
+          <button mat-menu-item>action 2</button>
+          <button mat-menu-item>action 3</button>
+        </mat-menu>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <div class="content">
+      <div>
+        <table mat-table [dataSource]="dataSource" color="accent">
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> <span style="font-size: 24px;">№</span> </th>
+            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+          </ng-container>
+
+          <!-- Url Column -->
+          <ng-container matColumnDef="imageUrl">
+            <th mat-header-cell *matHeaderCellDef> <span style="font-size: 24px;">Image</span> </th>
+            <td mat-cell *matCellDef="let element"> <img style="height: auto; width: auto; max-height: 700px"
+                [src]="element.imageUrl" /> </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[1, 3, 5, 10, 20]" showFirstLastButtons color="accent" >
+        </mat-paginator>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

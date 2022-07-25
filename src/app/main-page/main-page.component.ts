@@ -32,5 +32,8 @@ export class MainPageComponent implements OnInit {
   onClickHome() {
     this.router.navigate(['/']);
   }
+  onClickMonitor() {
+    this.router.navigate(['/Monitor']);
+  }
 
 }

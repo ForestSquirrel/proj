@@ -8,7 +8,7 @@
             <mat-icon>home</mat-icon> Home
           </span>
         </button>
-        <button mat-list-item>
+        <button mat-list-item (click)="this.onClickMonitor()">
           <span class="menu-text">
             <mat-icon>bar_chart</mat-icon> Monitor
           </span>
@@ -66,7 +66,8 @@
     <div class="content">
       <mat-grid-list cols="2" rowHeight="fit">
         <mat-grid-tile rowspan="1" colspan="1">
-          <mat-card class="example-card">
+          <mat-spinner color="accent" diameter="200" *ngIf="!this.NoSpinner"></mat-spinner>
+          <mat-card class="example-card" *ngIf="this.NoSpinner">
             <mat-card-header [ngSwitch]="activeLink">
               <div mat-card-avatar *ngSwitchCase="this.links[2]"><img class="flag-icon" src="../../assets/ru-flag.png">
               </div>
@@ -89,10 +90,11 @@
                 <mat-card-header>
                   <mat-card-title>My Credit Card</mat-card-title>
                 </mat-card-header>
-                <mat-card-content>
-                  <form [formGroup]="cardForm" (ngSubmit)="onSubmit()" card container=".card-wrapper" card_width="500"
-                    [messages]="messages" [placeholders]="placeholders" [masks]="masks" [formatting]="false"
-                    [debug]="true">
+                <form [formGroup]="cardForm" (ngSubmit)="onSubmit()" card container=".card-wrapper" card_width="500"
+                  [messages]="messages" [placeholders]="placeholders" [masks]="masks" [formatting]="false"
+                  [debug]="true">
+                  <mat-card-content>
+
                     <div class="wrapper">
                       <div class="cn">
                         <mat-form-field class="full-width">
@@ -125,16 +127,15 @@
                         </mat-form-field>
                       </div>
                     </div>
-                  </form>
-                </mat-card-content>
 
-                <mat-card-actions>
-                  <div class="card-btn">
-                    <button class="btn1" mat-raised-button color="accent">Save</button>
-                    <button class="btn2" mat-raised-button color="accent">Select another card</button>
-                  </div>
-                </mat-card-actions>
-
+                  </mat-card-content>
+                  <mat-card-actions>
+                    <div class="card-btn">
+                      <button class="btn1" type="submit" mat-raised-button color="accent">Save"</button>
+                      <button class="btn2" mat-raised-button color="accent">Select another card</button>
+                    </div>
+                  </mat-card-actions>
+                </form>
               </mat-card>
 
             </mat-card-content>
@@ -158,21 +159,21 @@
             </mat-card-header>
             <mat-divider></mat-divider>
             <mat-card-content>
-              <form class="transact-form">
+              <form class="transact-form" #f="ngForm">
                 <div class="t-form">
                   <mat-form-field>
-                    <input matInput type="text" placeholder="Card No">
-                    <mat-hint>Name</mat-hint>
+                    <input matInput type="text" name="cardno" placeholder="Card No" [(ngModel)]="cardno"
+                      (change)="onCNChange()">
+                    <mat-hint>{{name}}</mat-hint>
                   </mat-form-field>
 
                   <span class="warn-txt">
                     <mat-icon>error_outline</mat-icon> Some text
                   </span>
-
-
                   <mat-form-field>
                     <mat-label>Amount</mat-label>
-                    <input matInput type="number" class="example-right-align" placeholder="0">
+                    <input matInput type="number" name="Ammount" class="example-right-align" placeholder="0"
+                      [(ngModel)]="sum" />
                     <mat-select matPrefix [(value)]="curType">
                       <mat-option value="primary">RUB</mat-option>
                       <mat-option value="accent">USD</mat-option>
@@ -180,30 +181,29 @@
                     </mat-select>
                     <span matSuffix class="suf">.00</span>
                   </mat-form-field>
-                    <div class="form-group my-2 w-100">
-                      <div class="d-flex flex-nowrap">
-                        <span>Transcation Ammont</span>
-                        <hr class="col mx-2">
-                        <label style="font-weight: bold">0 so'm</label>
-                      </div>
-                      <div class="d-flex flex-nowrap">
-                        <span>Transfer Price</span>
-                        <hr class="col mx-2">
-                        <label style="font-weight: bold">0 RUB | UZS</label>
-                      </div>
-                      <div class="d-flex flex-nowrap">
-                        <span>Currency Rate</span>
-                        <hr class="col mx-2">
-                        <label style="font-weight: bold">1 RUB = 182 UZS</label>
-                      </div>
+                  <div class="form-group my-2 w-100">
+                    <div class="d-flex flex-nowrap">
+                      <span>Transcation Ammont</span>
+                      <hr class="col mx-2">
+                      <label style="font-weight: bold">{{sum*128}} so'm</label>
                     </div>
+                    <div class="d-flex flex-nowrap">
+                      <span>Transfer Price</span>
+                      <hr class="col mx-2">
+                      <label style="font-weight: bold">0 RUB | UZS</label>
+                    </div>
+                    <div class="d-flex flex-nowrap">
+                      <span>Currency Rate</span>
+                      <hr class="col mx-2">
+                      <label style="font-weight: bold">1 RUB = 182 UZS</label>
+                    </div>
+                  </div>
                 </div>
               </form>
-
             </mat-card-content>
 
             <mat-card-actions>
-              <button mat-raised-button color="accent" style="width: 100%;">
+              <button mat-raised-button color="accent" style="width: 100%;" (click)="onSend()">
                 <mat-icon>send</mat-icon> Send Transaction
               </button>
             </mat-card-actions>

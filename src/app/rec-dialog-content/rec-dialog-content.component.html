@@ -1,0 +1,114 @@
+<h2 mat-dialog-title></h2>
+<mat-dialog-content class="mat-typography">
+    <div id="invoice-POS">
+        <div class="info">
+            <h2>UNIRED PAY</h2>
+            <h2>Contact Info</h2>
+            <p>
+                Address : street city, state 0000 <br>
+                Email : JohnDoe@gmail.com <br>
+                Phone : 555-555-5555 <br>
+            </p>
+        </div>
+        <!--End Info-->
+        <div id="bot">
+
+            <div id="table">
+                <table>
+                    <tr class="tabletitle">
+                        <td class="item">
+                            <h2>Details</h2>
+                        </td>
+                        <td class="Rate">
+                            <h2></h2>
+                        </td>
+                    </tr>
+
+                    <tr class="service">
+                        <td class="tableitem">
+                            <p class="itemtext">Sender Card Number</p>
+                        </td>
+                        <td class="tableitem">
+                            <p class="itemtext">{{data.cardno}}</p>
+                        </td>
+                    </tr>
+
+                    <tr class="service">
+                        <td class="tableitem">
+                            <p class="itemtext">Sender Name</p>
+                        </td>
+                        <td class="tableitem">
+                            <p class="itemtext">{{data.firstName}} &nbsp; {{data.lastName}}</p>
+                        </td>
+                    </tr>
+
+                    <tr class="service">
+                        <td class="tableitem">
+                            <p class="itemtext">Card expiration date</p>
+                        </td>
+                        <td class="tableitem">
+                            <p class="itemtext">{{data.expDate}}</p>
+                        </td>
+                    </tr>
+
+                    <tr class="service">
+                        <td class="tableitem">
+                            <p class="itemtext">Card CVV</p>
+                        </td>
+                        <td class="tableitem">
+                            <p class="itemtext">{{data.cvvNo}}</p>
+                        </td>
+                    </tr>
+
+                    <tr class="service">
+                        <td class="tableitem">
+                            <p class="itemtext">RUB</p>
+                        </td>
+                        <td class="tableitem">
+                            <p class="itemtext">{{data.sumRUB}}</p>
+                        </td>
+                    </tr>
+
+                    <tr class="service">
+                        <td class="tableitem">
+                            <p class="itemtext">UZS</p>
+                        </td>
+                        <td class="tableitem">
+                            <p class="itemtext">{{data.sumUZS}}</p>
+                        </td>
+                    </tr>
+
+                    <tr class="service">
+                        <td class="tableitem">
+                            <p class="itemtext">Reciever Name</p>
+                        </td>
+                        <td class="tableitem">
+                            <p class="itemtext">{{data.rName}}</p>
+                        </td>
+                    </tr>
+
+                    <tr class="service">
+                        <td class="tableitem">
+                            <p class="itemtext">Transaction Date</p>
+                        </td>
+                        <td class="tableitem">
+                            <p class="itemtext">{{data.date}}</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!--End Table-->
+
+            <div id="legalcopy">
+                <p class="legal"><strong>Thank you for your business!</strong> 
+                </p>
+            </div>
+
+        </div>
+        <!--End InvoiceBot-->
+    </div>
+    <!--End Invoice-->
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

@@ -1,0 +1,215 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-nav-list>
+      <div class="side-menu">
+        <button mat-list-item (click)="this.onClickHome()">
+          <span class="menu-text">
+            <mat-icon>home</mat-icon> Home
+          </span>
+        </button>
+        <button mat-list-item>
+          <span class="menu-text">
+            <mat-icon>bar_chart</mat-icon> Monitor
+          </span>
+        </button>
+        <button mat-list-item (click)="this.onClickTransaction()">
+          <span class="menu-text">
+            <mat-icon>compare_arrows</mat-icon> Transaction
+          </span>
+        </button>
+        <button mat-list-item>
+          <span class="menu-text">
+            <mat-icon>payment</mat-icon> Payment
+          </span>
+        </button>
+        <button mat-list-item>
+          <span class="menu-text">
+            <mat-icon>credit_card</mat-icon> My cards
+          </span>
+        </button>
+        <button mat-list-item>
+          <span class="menu-text">
+            <mat-icon>settings</mat-icon> Settings
+          </span>
+        </button>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color='accent'>
+      <mat-toolbar-row>
+        <button mat-icon-button class="example-icon" (click)="drawer.toggle()" disableRipple="true">
+          <img class="logo-icon" src="../../assets/logo.png">
+        </button>
+        <span class="example-spacer"></span>
+
+        <button mat-button [matMenuTriggerFor]="Menu">
+          Phone number/User name
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #Menu="matMenu" xPosition="before" yPosition="below">
+          <button mat-menu-item>action 1</button>
+          <button mat-menu-item>action 2</button>
+          <button mat-menu-item>action 3</button>
+        </mat-menu>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+
+    <nav mat-tab-nav-bar [tabPanel]="tabPanel" mat-align-tabs="center" color="accent">
+      <a mat-tab-link *ngFor="let link of links" style="font-size: 24px;" (click)="activeLink = link"
+        [active]="activeLink == link"> {{link}} </a>
+    </nav>
+
+    <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+    <div class="content">
+      <mat-grid-list cols="2" rowHeight="fit">
+        <mat-grid-tile rowspan="1" colspan="1">
+          <mat-card class="example-card">
+            <mat-card-header [ngSwitch]="activeLink">
+              <div mat-card-avatar *ngSwitchCase="this.links[2]"><img class="flag-icon" src="../../assets/ru-flag.png">
+              </div>
+              <div mat-card-avatar *ngSwitchCase="this.links[0]"><img class="flag-icon" src="../../assets/uz-flag.png">
+              </div>
+              <div mat-card-avatar *ngSwitchCase="this.links[1]"><img class="flag-icon" src="../../assets/uz-flag.png">
+              </div>
+              <mat-card-title *ngSwitchCase="this.links[2]">Add Russian Credit Card</mat-card-title>
+              <mat-card-title *ngSwitchCase="this.links[0]">Add Uzbekistan Credit Card</mat-card-title>
+              <mat-card-title *ngSwitchCase="this.links[1]">Add Uzbekistan Credit Card</mat-card-title>
+              <mat-card-subtitle>You can also select existing one</mat-card-subtitle>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <!--<mat-card-content></mat-card-content>-->
+            <mat-card-content>
+              <div class="card-margin">
+                <div class='card-wrapper'></div>
+              </div>
+              <mat-card>
+                <mat-card-header>
+                  <mat-card-title>My Credit Card</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <form [formGroup]="cardForm" (ngSubmit)="onSubmit()" card container=".card-wrapper" card_width="500"
+                    [messages]="messages" [placeholders]="placeholders" [masks]="masks" [formatting]="false"
+                    [debug]="true">
+                    <div class="wrapper">
+                      <div class="cn">
+                        <mat-form-field class="full-width">
+                          <input matInput formControlName="cardno" placeholder="Card Number" card-number>
+                        </mat-form-field>
+                      </div>
+                      <div class="fn">
+                        <mat-form-field class="full-width">
+                          <input type="text" matInput formControlName="firstName" placeholder="First Name" card-name>
+                        </mat-form-field>
+                      </div>
+                      <div class="sn">
+                        <mat-form-field class="full-width">
+                          <input matInput formControlName="lastName" placeholder="Last Name" card-name>
+                        </mat-form-field>
+                      </div>
+                      <div class="ed">
+                        <mat-form-field class="full-width">
+                          <input matInput formControlName="expDate" placeholder="Exp Date" card-expiry>
+                        </mat-form-field>
+                      </div>
+                      <div class="cvv">
+                        <mat-form-field class="full-width">
+                          <input matInput [type]="hide ? 'password' : 'text'" formControlName="cvvNo" placeholder="CVV"
+                            card-cvc>
+                          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                          </button>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </form>
+                </mat-card-content>
+
+                <mat-card-actions>
+                  <div class="card-btn">
+                    <button class="btn1" mat-raised-button color="accent">Save</button>
+                    <button class="btn2" mat-raised-button color="accent">Select another card</button>
+                  </div>
+                </mat-card-actions>
+
+              </mat-card>
+
+            </mat-card-content>
+            <!--<mat-card-content></mat-card-content>-->
+            <mat-card-actions>
+              <!---->
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile rowspan="1" colspan="1">
+          <mat-card class="example-card">
+            <mat-card-header [ngSwitch]="activeLink">
+              <div mat-card-avatar *ngSwitchCase="this.links[2]"><img class="flag-icon" src="../../assets/uz-flag.png">
+              </div>
+              <div mat-card-avatar *ngSwitchCase="this.links[0]"><img class="flag-icon" src="../../assets/uz-flag.png">
+              </div>
+              <div mat-card-avatar *ngSwitchCase="this.links[1]"><img class="flag-icon" src="../../assets/ru-flag.png">
+              </div>
+              <mat-card-title>Transaction manager</mat-card-title>
+              <mat-card-subtitle>Card to Card Transactions</mat-card-subtitle>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+              <form class="transact-form">
+                <div class="t-form">
+                  <mat-form-field>
+                    <input matInput type="text" placeholder="Card No">
+                    <mat-hint>Name</mat-hint>
+                  </mat-form-field>
+
+                  <span class="warn-txt">
+                    <mat-icon>error_outline</mat-icon> Some text
+                  </span>
+
+
+                  <mat-form-field>
+                    <mat-label>Amount</mat-label>
+                    <input matInput type="number" class="example-right-align" placeholder="0">
+                    <mat-select matPrefix [(value)]="curType">
+                      <mat-option value="primary">RUB</mat-option>
+                      <mat-option value="accent">USD</mat-option>
+                      <mat-option value="warn">UZS</mat-option>
+                    </mat-select>
+                    <span matSuffix class="suf">.00</span>
+                  </mat-form-field>
+                    <div class="form-group my-2 w-100">
+                      <div class="d-flex flex-nowrap">
+                        <span>Transcation Ammont</span>
+                        <hr class="col mx-2">
+                        <label style="font-weight: bold">0 so'm</label>
+                      </div>
+                      <div class="d-flex flex-nowrap">
+                        <span>Transfer Price</span>
+                        <hr class="col mx-2">
+                        <label style="font-weight: bold">0 RUB | UZS</label>
+                      </div>
+                      <div class="d-flex flex-nowrap">
+                        <span>Currency Rate</span>
+                        <hr class="col mx-2">
+                        <label style="font-weight: bold">1 RUB = 182 UZS</label>
+                      </div>
+                    </div>
+                </div>
+              </form>
+
+            </mat-card-content>
+
+            <mat-card-actions>
+              <button mat-raised-button color="accent" style="width: 100%;">
+                <mat-icon>send</mat-icon> Send Transaction
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

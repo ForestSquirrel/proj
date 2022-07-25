@@ -1,0 +1,166 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-nav-list>
+      <div class="side-menu">
+        <button mat-list-item (click)="this.onClickHome()">
+          <span class="menu-text">
+            <mat-icon>home</mat-icon> Home
+          </span>
+        </button>
+        <button mat-list-item>
+          <span class="menu-text">
+            <mat-icon>bar_chart</mat-icon> Monitor
+          </span>
+        </button>
+        <button mat-list-item (click)="this.onClickTransaction()">
+          <span class="menu-text">
+            <mat-icon>compare_arrows</mat-icon> Transaction
+          </span>
+        </button>
+        <button mat-list-item>
+          <span class="menu-text">
+            <mat-icon>payment</mat-icon> Payment
+          </span>
+        </button>
+        <button mat-list-item>
+          <span class="menu-text">
+            <mat-icon>credit_card</mat-icon> My cards
+          </span>
+        </button>
+        <button mat-list-item>
+          <span class="menu-text">
+            <mat-icon>settings</mat-icon> Settings
+          </span>
+        </button>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color='accent'>
+      <mat-toolbar-row>
+        <button mat-icon-button class="example-icon" (click)="drawer.toggle()" disableRipple="true">
+          <img class="logo-icon" src="../../assets/logo.png">
+        </button>
+        <span class="example-spacer"></span>
+
+        <button mat-button [matMenuTriggerFor]="Menu">
+          Phone number/User name
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #Menu="matMenu" xPosition="before" yPosition="below">
+          <button mat-menu-item>action 1</button>
+          <button mat-menu-item>action 2</button>
+          <button mat-menu-item>action 3</button>
+        </mat-menu>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <div class="content">
+      <mat-grid-list cols="2" rowHeight="fit">
+        <mat-grid-tile rowspan="1" colspan="1">
+          <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar><img class="flag-icon" src="../../assets/qp-icon.png"></div>
+              <mat-card-title>Quick Payments</mat-card-title>
+              <mat-card-subtitle>Transfer free</mat-card-subtitle>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <!--<mat-card-content></mat-card-content>-->
+            <mat-card-content>
+              <div class="card-margin"></div>   
+              <div class="wrapper">
+                <div style="grid-row: 1; grid-column: 1;">
+                  <button mat-raised-button style="font-size: 24px; width: 100%; height: 100px;" color="accent" (click)="this.onClickTransaction()"> 
+                    <mat-icon>compare_arrows</mat-icon>
+                    <span>&nbsp; Transactions</span>
+                  </button>
+                </div>
+                <div style="grid-row: 1; grid-column: 2;">
+                  <button mat-raised-button style="font-size: 24px; width: 100%; height: 100px;" color="accent"> 
+                    <mat-icon>payments</mat-icon>
+                    <span>&nbsp; Payments</span>
+                  </button>
+                </div>
+              </div>
+              <div class="card-margin"></div>           
+              <mat-card>
+                <mat-card-header>
+                  <div mat-card-avatar><img class="flag-icon" src="../../assets/mob-icon.png"></div>
+                  <mat-card-title>Mobile phone</mat-card-title>
+                  <mat-card-subtitle>Payments</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <form class="transact-form">
+                      <mat-form-field style="width: 100%; font-size: 24px;" color="accent">
+                        <mat-label>Phone Number</mat-label>
+                        <span matPrefix>+998 &nbsp;</span>
+                        <input type="tel" matInput placeholder="555-555-1234">
+                        <button mat-raised-button matSuffix style="font-size: 24px;" color="accent"> Send</button>
+                      </mat-form-field>
+                  </form>
+                </mat-card-content>
+              </mat-card>
+
+            </mat-card-content>
+            <!--<mat-card-content></mat-card-content>-->
+            <mat-card-actions>
+              <!---->
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile class="card-left" rowspan="1" colspan="1">
+          <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar><img class="flag-icon" src="../../assets/int-flag.png">
+              </div>
+              <mat-card-title>International Transactions</mat-card-title>
+              <mat-card-subtitle>Card to Card Transactions</mat-card-subtitle>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+              <form class="transact-form">
+                <div class="t-form">
+                  <mat-form-field>
+                    <mat-label>Amount</mat-label>
+                    <input matInput type="number" class="example-right-align" placeholder="0">
+                    <mat-select matPrefix [(value)]="curType">
+                      <mat-option value="primary">RUB</mat-option>
+                      <mat-option value="accent">USD</mat-option>
+                      <mat-option value="warn">UZS</mat-option>
+                    </mat-select>
+                    <span matSuffix class="suf">.00</span>
+                  </mat-form-field>
+                  <div class="form-group my-2 w-100">
+                    <div class="d-flex flex-nowrap">
+                      <span>Transcation Ammont</span>
+                      <hr class="col mx-2">
+                      <label style="font-weight: bold">0 so'm</label>
+                    </div>
+                    <div class="d-flex flex-nowrap">
+                      <span>Transfer Price</span>
+                      <hr class="col mx-2">
+                      <label style="font-weight: bold">0 RUB | UZS</label>
+                    </div>
+                    <div class="d-flex flex-nowrap">
+                      <span>Currency Rate</span>
+                      <hr class="col mx-2">
+                      <label style="font-weight: bold">1 RUB = 182 UZS</label>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+            </mat-card-content>
+
+            <mat-card-actions>
+              <button mat-raised-button color="accent" style="width: 100%;" (click)="this.onClickTransaction()">
+                Start Transaction
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

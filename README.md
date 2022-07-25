@@ -2,6 +2,11 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.3.
 
+## Modules & Libs
+
+Card view: `ngx-card` use `npm i ngx-card` (https://github.com/ihym/ngx-card)
+Material: 'angular material' use `ng add @angular/material` (https://material.angular.io/)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

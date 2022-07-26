@@ -5,7 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Modules & Libs
 
 ### Angular: 
-npm install -g @angular/cli
+`npm install -g @angular/cli`
 
 ### Card view: 
 `ngx-card` use `npm i ngx-card` (https://github.com/ihym/ngx-card)

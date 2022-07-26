@@ -29,7 +29,7 @@
                             <p class="itemtext">Sender Card Number</p>
                         </td>
                         <td class="tableitem">
-                            <p class="itemtext">{{data.cardno}}</p>
+                            <p class="itemtext">****&nbsp;****&nbsp;****&nbsp;{{data.cardno.slice(-4)}}</p>
                         </td>
                     </tr>
 
@@ -92,7 +92,7 @@
                             <p class="itemtext">Transaction Date</p>
                         </td>
                         <td class="tableitem">
-                            <p class="itemtext">{{data.date}}</p>
+                            <p class="itemtext">{{data.date | date:'fullDate'}}</p>
                         </td>
                     </tr>
                 </table>

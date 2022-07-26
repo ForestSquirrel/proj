@@ -9,5 +9,5 @@ export interface DialogData {
     sumUZS: number;
     
     rName: string;
-    date: string;
+    date: number;
   }

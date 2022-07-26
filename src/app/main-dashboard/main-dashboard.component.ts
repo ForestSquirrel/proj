@@ -33,7 +33,7 @@ export class MainDashboardComponent implements OnInit {
   sumUZS: 11111,
   cvvNo: 'XXXXXX',
   rName: 'XXXXXXX',
-  date: 'XXXXXX'
+  date: 11
 };
 
 
@@ -95,10 +95,10 @@ export class MainDashboardComponent implements OnInit {
     this.TransactionData.sumRUB = this.sum;
     this.TransactionData.sumUZS = this.sum*128;
     this.TransactionData.rName = this.name;
-    this.TransactionData.date = Date.now().toString();
+    this.TransactionData.date = Date.now();
     console.log(this.TransactionData);
     this.NoSpinner = !this.NoSpinner;
-    await delay(2000);
+    await delay(4000);
     this.NoSpinner = !this.NoSpinner;
     this.openDialog();
   }

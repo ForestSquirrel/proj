@@ -7,6 +7,7 @@ import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { GarbageData } from '../interfaces/dialog-interface';
 
 @Component({
   selector: 'app-monitor-page',
@@ -14,6 +15,7 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./monitor-page.component.css']
 })
 export class MonitorPageComponent implements AfterViewInit {
+  GarbageData : GarbageData = new GarbageData();
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(

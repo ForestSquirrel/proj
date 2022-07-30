@@ -1,0 +1,90 @@
+#invoice-POS{
+
+    padding:2mm;
+    margin: 0 auto;
+    width: auto;
+    background: #FFF;
+}
+       
+h1{
+    font-size: 24px;
+    color: #222;
+  }
+  h2{font-size: .9em;}
+  h3{
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 2em;
+  }
+  p{
+    font-size: .7em;
+    color: #666;
+    line-height: 1.2em;
+  }
+   
+  #top, #mid,#bot{ /* Targets all id with 'col-' */
+    border-bottom: 1px solid #EEE;
+  }
+  
+  #top{min-height: 100px;}
+  #mid{min-height: 80px;} 
+  #bot{ min-height: 50px;}
+  
+  #top .logo{
+    float: left;
+      height: auto;
+      width: auto;
+  }
+  .clientlogo{
+    float: left;
+      height: auto;
+      width: auto;
+  }
+  .info{
+    display: block;
+    float:left;
+    margin-left: 0;
+  }
+  .title{
+    float: right;
+  }
+  .title p{text-align: right;} 
+  table{
+    width: 100%;
+    border-collapse: collapse;
+  }
+  td{
+    padding: 5px 0 5px 15px;
+
+  }
+  .tabletitle{
+    padding: 5px;
+    font-size: 18px;
+    background: #EEE;
+  }
+  .service{border-bottom: 1px solid #EEE;}
+  .item{width: auto;}
+  .itemtext{font-size: 16px;}
+  
+  #legalcopy{
+    margin-top: 5mm;
+  }
+  .card-btn{
+    display: grid;
+    grid-gap: 10px;
+    grid-auto-rows: auto;
+    grid-auto-columns: 50%;
+    vertical-align: middle;
+  }
+  .btn1{
+    width: inherit;
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+  }
+  .btn2{
+    width: inherit;
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+  }

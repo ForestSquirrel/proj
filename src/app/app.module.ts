@@ -38,6 +38,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 import { RecDialogContentComponent } from './rec-dialog-content/rec-dialog-content.component';
+import { DSDialogContentComponent } from './3ds-dialog-content/3ds-dialog-content.component';
 
 
 
@@ -68,6 +69,7 @@ const routes: Routes = [
     MainDashboardComponent,
     MonitorPageComponent,
     RecDialogContentComponent,
+    DSDialogContentComponent,
   ],
   imports: [
     CardModule,

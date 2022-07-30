@@ -11,3 +11,13 @@ export interface DialogData {
     rName: string;
     date: number;
   }
+  
+  export class GarbageData {
+    CurRate : number;
+    UserName : string;
+
+    constructor(){
+      this.CurRate = 100;
+      this.UserName = "Glister";
+    }
+  }

@@ -5,9 +5,10 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RecDialogContentComponent } from '../rec-dialog-content/rec-dialog-content.component';
-import { DialogData } from '../interfaces/dialog-interface';
+import { DSDialogContentComponent } from '../3ds-dialog-content/3ds-dialog-content.component';
+import { DialogData, GarbageData } from '../interfaces/dialog-interface';
 import { DatePipe } from '@angular/common';
 
 
@@ -18,6 +19,7 @@ import { DatePipe } from '@angular/common';
 })
 export class MainDashboardComponent implements OnInit {
   cardForm!: FormGroup;
+  GarbageData: GarbageData = new GarbageData();
   hide = true;
   curType = 'RUB';
   sum = 0;
@@ -25,16 +27,17 @@ export class MainDashboardComponent implements OnInit {
   name = 'CARDHOLDER NAME';
   cardno = '';
 
-  TransactionData : DialogData = {cardno:'XXXXX', 
-  firstName: 'XXXXXX',
-  lastName: 'XXXXXXX',
-  expDate: 'XXXXXXX',
-  sumRUB: 1111,
-  sumUZS: 11111,
-  cvvNo: 'XXXXXX',
-  rName: 'XXXXXXX',
-  date: 11
-};
+  TransactionData: DialogData = {
+    cardno: 'XXXXX',
+    firstName: 'XXXXXX',
+    lastName: 'XXXXXXX',
+    expDate: 'XXXXXXX',
+    sumRUB: 1111,
+    sumUZS: 11111,
+    cvvNo: 'XXXXXX',
+    rName: 'XXXXXXX',
+    date: 11
+  };
 
 
   links = ['Local Transactions', 'Uzbekistan to Russia Transactions', 'Russia to Uzbekistan Transactions'];
@@ -74,6 +77,15 @@ export class MainDashboardComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
+  openDialog3DS(): void {
+    const dialogRef = this.dialog.open(DSDialogContentComponent, {
+      data: this.TransactionData
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
   onSubmit() {
     this.TransactionData.cardno = this.cardForm.value.cardno;
     this.TransactionData.firstName = this.cardForm.value.firstName;
@@ -93,14 +105,27 @@ export class MainDashboardComponent implements OnInit {
   }
   async onSend() {
     this.TransactionData.sumRUB = this.sum;
-    this.TransactionData.sumUZS = this.sum*128;
+    this.TransactionData.sumUZS = this.sum * this.GarbageData.CurRate;
     this.TransactionData.rName = this.name;
     this.TransactionData.date = Date.now();
     console.log(this.TransactionData);
     this.NoSpinner = !this.NoSpinner;
     await delay(4000);
     this.NoSpinner = !this.NoSpinner;
-    this.openDialog();
+
+    const dialogRef = this.dialog.open(DSDialogContentComponent, {
+      data: this.TransactionData
+    });
+
+    dialogRef.afterClosed().subscribe(async result => {
+      if (result) {
+        this.NoSpinner = !this.NoSpinner;
+        await delay(4000);
+        this.NoSpinner = !this.NoSpinner;
+        this.openDialog();
+      }
+      console.log('The dialog was closed');
+    });    
   }
   onCNChange() {
     if (this.cardno.length != 0) {

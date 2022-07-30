@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
+import { GarbageData } from '../interfaces/dialog-interface';
 
 @Component({
   selector: 'app-main-page',
@@ -14,6 +15,7 @@ import { Router } from "@angular/router";
 export class MainPageComponent implements OnInit {
   hide = true;
   curType = 'RUB';
+  GarbageData : GarbageData = new GarbageData();
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(

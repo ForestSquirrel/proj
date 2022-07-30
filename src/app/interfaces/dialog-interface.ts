@@ -17,7 +17,7 @@ export interface DialogData {
     UserName : string;
 
     constructor(){
-      this.CurRate = 100;
+      this.CurRate = 181;
       this.UserName = "Glister";
     }
   }

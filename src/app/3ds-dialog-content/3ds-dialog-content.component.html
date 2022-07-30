@@ -1,9 +1,13 @@
 <h2 mat-dialog-title></h2>
-<mat-dialog-content class="mat-typography">
+<mat-dialog-content class="mat-typography" style="height: 100%;">
+    <mat-card style="height: inherit; overflow: hidden;">
+        <mat-card-header>
+            <img class="logo-icon" src="../../assets/3ds.png" style="width: 100%;">   
+        </mat-card-header>
+        <mat-card-content>
     <div id="invoice-POS">
         <div class="info">
-            <h2>UNIRED PAY</h2>
-            <h2>3D Secure</h2>
+            <h2></h2>
         </div>
         <!--End Info-->
         <div id="bot">
@@ -15,15 +19,6 @@
                         </td>
                         <td class="Rate">
                             <h2></h2>
-                        </td>
-                    </tr>
-
-                    <tr class="service">
-                        <td class="tableitem">
-                            <p class="itemtext">Shop</p>
-                        </td>
-                        <td class="tableitem">
-                            <p class="itemtext">UNIRED PAY</p>
                         </td>
                     </tr>
 
@@ -93,8 +88,12 @@
         <!--End InvoiceBot-->
     </div>
     <!--End Invoice-->
+</mat-card-content>
+<mat-card-actions>
+    <div class="card-btn" mat-dialog-actions style="width: 100%;">
+        <button class="btn1" mat-stroked-button (click)="onNoClick()">Cancel</button>
+        <button class="btn2" mat-raised-button color="accent" [mat-dialog-close]="this.submited">Submit</button>
+    </div>
+</mat-card-actions>
+</mat-card>
 </mat-dialog-content>
-<div class="card-btn" mat-dialog-actions style="width: 100%;">
-    <button class="btn1" mat-stroked-button (click)="onNoClick()">Cancel</button>
-    <button class="btn2" mat-raised-button color="accent" [mat-dialog-close]="this.submited">Submit</button>
-</div>
